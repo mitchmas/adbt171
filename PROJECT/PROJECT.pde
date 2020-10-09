@@ -51,8 +51,8 @@ void draw() {
   fill(100, 75, 20);
   rect(0, 0, width, 300);
   fill(255);
-  text("Mitch's Virtual",width/2,60);
-  text("Piano",width/2,100);
+  text("Mitch's Virtual", width/2, 60);
+  text("Piano", width/2, 100);
   for (int i=0; i<20; i++) {
     fill(255);
     rect((width/16)*i, 300, (width/16), 300);
@@ -156,57 +156,59 @@ void draw() {
   }
   switch(keyselectB)
   {
+
   case 0:
-    fill(255);
-    rect(35, 300, 30, 150);
-    cS3.play();
-    break;
-  case 1:
     fill(255);
     rect(85, 300, 30, 150);
     dS3.play();
     break;
-  case 2:
+  case 1:
     fill(255);
     rect(185, 300, 30, 150);
     fS3.play();
     break;
-  case 3:
-    fill(255);
-    rect(235, 300, 30, 150);
-    gS3.play();
-    break;
-  case 4:
+
+  case 2:
     fill(255);
     rect(285, 300, 30, 150);
     aS4.play();
     break;
-  case 5:
+  case 3:
     fill(255);
     rect(385, 300, 30, 150);
     cS4.play();
     break;
-  case 6:
-    fill(255);
-    rect(435, 300, 30, 150);
-    dS4.play();
-    break;
-  case 7:
-    fill(255);
-    rect(535, 300, 30, 150);
-    fS4.play();
-    break;
-  case 8:
+  case 5:
     fill(255);
     rect(585, 300, 30, 150);
     gS4.play();
     break;
+  case 6:
+    fill(255);
+    rect(35, 300, 30, 150);
+    cS3.play();
+    break;
+  case 7:
+    fill(255);
+    rect(235, 300, 30, 150);
+    gS3.play();
+    break;
+  case 8:
+    fill(255);
+    rect(435, 300, 30, 150);
+    dS4.play();
+    break;
   case 9:
+    fill(255);
+    rect(535, 300, 30, 150);
+    fS4.play();
+    break;
+  case 10:
     fill(255);
     rect(635, 300, 30, 150);
     aS5.play();
     break;
-  case 10:
+  case 11:
     fill(255);
     rect(735, 300, 30, 150);
     cS5.play();
@@ -216,44 +218,27 @@ void draw() {
 
 void mousePressed() {
   if (mouseY<450 && mouseY>300 && whitepressed == false) {
+    for (int i=0; i<6; i++) {
+      if (mouseX>(85+i*100) && mouseX<(115+100*i) && i!=4) {
+        keyselectB=i;
+      }
+    }
     if (mouseX>35 && mouseX <65) {
-      keyselectB=0;
-    }
-    if (mouseX>85 && mouseX <115) {
-      keyselectB=1;
-    }
-    if (mouseX>185 && mouseX <215) {
-      keyselectB=2;
-    }
-    if (mouseX>235 && mouseX <265) {
-      keyselectB=3;
-    }
-    if (mouseX>285 && mouseX <315) {
-      keyselectB=4;
-    }
-    if (mouseX>385 && mouseX <415) {
-      keyselectB=5;
-    }
-    if (mouseX>435 && mouseX <465) {
       keyselectB=6;
+    } else if (mouseX>235 && mouseX < 265) {
+      keyselectB = 7;
     }
-    if (mouseX>535 && mouseX <565) {
-      keyselectB=7;
-    }
-    if (mouseX>585 && mouseX <615) {
-      keyselectB=8;
-    }
-    if (mouseX>635 && mouseX <665) {
-      keyselectB=9;
-    }
-    if (mouseX>735 && mouseX <765) {
-      keyselectB=10;
+    for (int i=0; i<8; i++) {
+      println(mouseX>(35+(i*100)), mouseX<(65+(100*i)), i);
+      if (mouseX>(35+(i*100)) && mouseX<(65+(100*i)) && (i==1 || i>2)) {
+        keyselectB=4+i;
+      }
     }
   }
   if (mouseY>450) {
     for (int i=0; i<16; i++) {
       if ((mouseX - ((width/16)*i) < 50 && mouseX-((width/16)*i) > 0 && blackpressed ==false)) {
-        whitepressed=true;
+        whitepressed=true; 
         keyselect=i;
       }
     }
@@ -261,9 +246,9 @@ void mousePressed() {
 }
 
 void mouseReleased() {
-  whitepressed=false;
-  blackpressed=false;
-  keyselect=-1;
+  whitepressed=false; 
+  blackpressed=false; 
+  keyselect=-1; 
   keyselectB=-1;
 }
 
@@ -301,33 +286,33 @@ void keyPressed() {
   } else if (key=='o') {
     keyselect=15;
   } else if (key=='s') {
-    keyselectB=0;
-  } else if (key=='d') {
-    keyselectB=1;
-  } else if (key=='g') {
-    keyselectB=2;
-  } else if (key=='h') {
-    keyselectB=3;
-  } else if (key=='j') {
-    keyselectB=4;
-  } else if (key=='l' || key=='2') {
-    keyselectB=5;
-  } else if (key==';' || key=='3') {
     keyselectB=6;
-  } else if (key=='5') {
+  } else if (key=='d') {
+    keyselectB=0;
+  } else if (key=='g') {
+    keyselectB=1;
+  } else if (key=='h') {
     keyselectB=7;
-  } else if (key=='6') {
+  } else if (key=='j') {
+    keyselectB=2;
+  } else if (key=='l' || key=='2') {
+    keyselectB=3;
+  } else if (key==';' || key=='3') {
     keyselectB=8;
-  } else if (key=='7') {
+  } else if (key=='5') {
     keyselectB=9;
-  } else if (key=='9') {
+  } else if (key=='6') {
+    keyselectB=5;
+  } else if (key=='7') {
     keyselectB=10;
+  } else if (key=='9') {
+    keyselectB=11;
   }
 }
 
 void keyReleased() {
-  whitepressed=false;
-  blackpressed=false;
-  keyselect=-1;
+  whitepressed=false; 
+  blackpressed=false; 
+  keyselect=-1; 
   keyselectB=-1;
 }
